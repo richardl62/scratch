@@ -1,1 +1,1 @@
-Changes in repo 1
+Rewritten in "scratch"
