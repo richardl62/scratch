@@ -1,2 +1,1 @@
-"I am file 2" 
-And this is line 2
+version 1
