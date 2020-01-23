@@ -23,6 +23,7 @@ function pick_colours() {
 
         boxes[i].style.backgroundColor = col;
         boxes[i].innerHTML = "Is it me?";
+        boxes[i].addEventListener("click", function() { box_click(this); })
     }
 
     selected_col = boxes[random_int(n_boxes)].style.backgroundColor;
