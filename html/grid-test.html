@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grid test</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <style>
+
+    body {
+        margin: 0;
+    }
+    #board , .square {
+        border: 1px solid black;
+    }
+
+    #board {
+        display: grid;
+        margin: 2%;
+
+        border-left: none;
+        border-bottom: none;
+        border-bottom: none;
+        grid: 10px;
+      }
+
+    .square {
+        border-top: none;
+        border-right: none;
+
+        margin: 0;
+    }
+
+    .counter { /* Player 1 by default*/
+        margin: 10%;
+        height: 80%;
+        width: 80%;
+        border-radius: 50%;
+        background-color: darkred;
+    }
+
+    #preamble {
+        margin: 0;
+        padding: 0;
+        background-color: lightgreen;
+      }
+
+    h1 {
+        /* margin : 0; */
+    }
+    </style>
+
+</head>
+<body>
+
+    <!-- <div id="preamble"> 
+         <h1>Hello.  It's nice to see you.</h1>
+    </div> -->
+
+    <div id="board">
+
+    </div>
+
+    <script>
+        var n_rows = 10;
+        var n_cols = 2;
+        var board = $("#board");
+
+        board.css("grid-template-rows",    "repeat(" + n_rows + ", 1fr)");
+        board.css("grid-template-columns", "repeat(" + n_cols + ", 1fr)");
+
+        for(var i = 0; i < n_rows * n_cols; ++i)
+        {
+           board.append('<div class="square"><div class="counter"></div></div>'); 
+        }
+
+        function resize_board() {
+            var w = $(window).width();
+            var h = $(window).height();
+
+            var board = $("#board");
+            var marginTopBottom  = board.outerHeight(true) - board.outerHeight();
+            var marginLeftRight  = board.outerWidth(true)  - board.outerWidth();
+            
+            var elem_size = Math.min((h-marginTopBottom)/n_rows,    
+                                     (w-marginLeftRight)/n_cols);
+ 
+            $("#board").height(elem_size*n_rows);
+            $("#board").width(elem_size*n_cols);
+        }
+
+        resize_board();
+
+        $(window).resize(resize_board);
+
+    </script>
+</body>
+
+
+</html>
