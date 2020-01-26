@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Div Span</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <style>
+        .container {
+            display: grid;
+            grid: repeat(3, 12vw) / auto-flow;
+        }
+    
+        .row {
+            display: grid;
+            grid: repeat(1, 12vw) / auto-flow;
+        }
+    
+        .row>.square {
+            margin: 10px;
+            background: tomato;
+        }
+    
+        @media (orientation: portrait) {
+    
+            .container {
+                transform: rotate(90deg) translate(35%);
+            }
+    
+            .row>.square {
+                transform: rotate(-90deg);
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+          <div class="square">11</div>
+          <div class="square">12</div>
+          <div class="square">13</div>
+          <div class="square">14</div>
+          <div class="square">15</div>
+          <div class="square">16</div>
+          <div class="square">17</div>
+          <div class="square">18</div>
+        </div>
+        <div class="row">
+          <div class="square">21</div>
+          <div class="square">22</div>
+          <div class="square">23</div>
+          <div class="square">24</div>
+          <div class="square">25</div>
+          <div class="square">26</div>
+          <div class="square">27</div>
+          <div class="square">28</div>
+        </div>
+        <div class="row">
+          <div class="square">31</div>
+          <div class="square">32</div>
+          <div class="square">33</div>
+          <div class="square">34</div>
+          <div class="square">35</div>
+          <div class="square">36</div>
+          <div class="square">37</div>
+          <div class="square">38</div>
+        </div>
+      </div>
+</body>
+
+
+</html>   

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fullscreen test</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <style>
+    html, body {
+        /* height: 100%; */
+      }
+      
+    #square {
+        margin: 0;
+        padding: 0;
+        background-color: yellow;
+      }
+
+    #preamble {
+        margin: 0;
+        padding: 0;
+        background-color: lightgreen;
+      }
+
+    h1 {
+        /* margin : 0; */
+    }
+    </style>
+
+</head>
+<body>
+
+    <div id="preamble"> 
+         <h1>Hello.  It's nice to see you.</h1>
+    </div>
+
+    <div id="square">
+        
+    </div>
+
+    <script>
+        function set_square() {
+            var hw = $( window ).height();
+            var hp = $("#preamble").height();
+            var w = $( window ).width();
+            var hw = Math.min(hw - hp, w);
+
+            //console.log("running make_squares: " + h + " " + w + " min: " + hw);
+
+            $("#square").height(hw);
+            $("#square").width(hw);
+
+        }
+
+        set_square();
+
+        $(window).resize(set_square);
+    </script>
+</body>
+
+
+</html>   

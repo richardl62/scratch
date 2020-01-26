@@ -7,30 +7,26 @@
     <title>Grid test</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
+        <!-- /home/richard.latham2/git/scratch/html/grid-test.html -->
+    <script type="text/javascript" src="../../richardl62.github.io/assets/js/games-board.js"></script>
     <style>
-
+* {
+  box-sizing: border-box;
+}
     body {
-        margin: 0;
+        margin: 10px;
     }
-    #board , .square {
-        border: 1px solid black;
-    }
+    body {
+       border: 1px solid red;
+    } 
 
     #board {
-        display: grid;
-        margin: 2%;
-
-        border-left: none;
-        border-bottom: none;
-        border-bottom: none;
-        grid: 10px;
+        margin: 20px;
+        border: 3px solid green;
       }
 
     .square {
-        border-top: none;
-        border-right: none;
-
+        border: 1px solid black;
         margin: 0;
     }
 
@@ -47,10 +43,6 @@
         padding: 0;
         background-color: lightgreen;
       }
-
-    h1 {
-        /* margin : 0; */
-    }
     </style>
 
 </head>
@@ -65,38 +57,65 @@
     </div>
 
     <script>
-        var n_rows = 10;
+        var n_rows = 2;
         var n_cols = 2;
         var board = $("#board");
+        board.css("display", "grid");
 
-        board.css("grid-template-rows",    "repeat(" + n_rows + ", 1fr)");
-        board.css("grid-template-columns", "repeat(" + n_cols + ", 1fr)");
+        for(var row = 0; row < n_rows; ++row)
+            for(var col = 0; col < n_cols; ++col)
+            {
+                var elem = $('<div class="square"><div class="counter"></div></div>');
+                board.append(elem);
 
-        for(var i = 0; i < n_rows * n_cols; ++i)
-        {
-           board.append('<div class="square"><div class="counter"></div></div>'); 
-        }
+                if(row != 0)
+                    elem.css("border-top", "none");
+                if(col != 0)
+                    elem.css("border-left", "none");
+            }
 
-        function resize_board() {
-            var w = $(window).width();
-            var h = $(window).height();
-
+        function set_square_sizes() {
             var board = $("#board");
-            var marginTopBottom  = board.outerHeight(true) - board.outerHeight();
-            var marginLeftRight  = board.outerWidth(true)  - board.outerWidth();
+            var w = board.innerWidth();
+            var h = board.innerHeight();
             
-            var elem_size = Math.min((h-marginTopBottom)/n_rows,    
-                                     (w-marginLeftRight)/n_cols);
+            var elem_size = Math.min(h/n_rows, w/n_cols);
  
-            $("#board").height(elem_size*n_rows);
-            $("#board").width(elem_size*n_cols);
+            board.css("grid-template-rows",    "repeat(" + n_rows + ", " + elem_size + "px)");
+            board.css("grid-template-columns", "repeat(" + n_cols + ", " + elem_size + "px)");
+        }
+        $(window).resize(set_board_to_window_size);
+
+        $("#board").resize(set_square_sizes);
+
+        function leftRightMargin(elem)
+        {
+             return elem.outerWidth(true) - elem.outerWidth();
         }
 
-        resize_board();
+        function topBotMargin(elem)
+        {
+             return elem.outerHeight(true) - elem.outerHeight();
+        }
 
-        $(window).resize(resize_board);
+        function set_board_to_window_size()
+        {
+            $("body").width($(window).width() - leftRightMargin($("body")));
+            $("body").height($(window).height() - topBotMargin($("body")));
 
-    </script>
+            var board =  $("#board");
+
+            board.width($("body").innerWidth() - leftRightMargin(board));
+            board.height($("body").innerHeight() - topBotMargin(board));
+    
+
+        }
+
+        set_board_to_window_size();
+        set_square_sizes();
+
+
+>
 </body>
 
 
