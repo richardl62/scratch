@@ -7,26 +7,24 @@
     <title>Grid test</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-        <!-- /home/richard.latham2/git/scratch/html/grid-test.html -->
+
     <script type="text/javascript" src="../../richardl62.github.io/assets/js/games-board.js"></script>
     <style>
 * {
   box-sizing: border-box;
 }
     body {
-        margin: 10px;
-    }
-    body {
-       border: 1px solid red;
+       /* margin: 10px; */
+       /* border: 1px solid red; */
     } 
 
     #board {
-        margin: 20px;
-        border: 3px solid green;
+        /* margin: 20px; */
+        border: 3px dashed red;
       }
 
     .square {
-        border: 1px solid black;
+        border: 3px solid black;
         margin: 0;
     }
 
@@ -38,11 +36,6 @@
         background-color: darkred;
     }
 
-    #preamble {
-        margin: 0;
-        padding: 0;
-        background-color: lightgreen;
-      }
     </style>
 
 </head>
@@ -52,41 +45,12 @@
          <h1>Hello.  It's nice to see you.</h1>
     </div> -->
 
-    <div id="board">
-
-    </div>
+    <div id="board"></div>
 
     <script>
-        var n_rows = 2;
-        var n_cols = 2;
+
         var board = $("#board");
-        board.css("display", "grid");
-
-        for(var row = 0; row < n_rows; ++row)
-            for(var col = 0; col < n_cols; ++col)
-            {
-                var elem = $('<div class="square"><div class="counter"></div></div>');
-                board.append(elem);
-
-                if(row != 0)
-                    elem.css("border-top", "none");
-                if(col != 0)
-                    elem.css("border-left", "none");
-            }
-
-        function set_square_sizes() {
-            var board = $("#board");
-            var w = board.innerWidth();
-            var h = board.innerHeight();
-            
-            var elem_size = Math.min(h/n_rows, w/n_cols);
- 
-            board.css("grid-template-rows",    "repeat(" + n_rows + ", " + elem_size + "px)");
-            board.css("grid-template-columns", "repeat(" + n_cols + ", " + elem_size + "px)");
-        }
-        $(window).resize(set_board_to_window_size);
-
-        $("#board").resize(set_square_sizes);
+        var games_board = new GamesBoard(board, 6, 3);
 
         function leftRightMargin(elem)
         {
@@ -107,15 +71,15 @@
 
             board.width($("body").innerWidth() - leftRightMargin(board));
             board.height($("body").innerHeight() - topBotMargin(board));
-    
 
+            games_board.resizeSquares();
         }
 
-        set_board_to_window_size();
-        set_square_sizes();
+        set_board_to_window_size();       
+        $(window).resize(set_board_to_window_size);
+    </script>
 
 
->
 </body>
 
 
