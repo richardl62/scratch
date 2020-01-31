@@ -8,58 +8,52 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
+    <script type="text/javascript" src="../lib/games-board.js"></script>
     <style>
+    * {
+        box-sizing: border-box;
+    }
+
     html, body {
-        /* height: 100%; */
-      }
-      
-    #square {
-        margin: 0;
-        padding: 0;
-        background-color: yellow;
-      }
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+    }
 
-    #preamble {
-        margin: 0;
-        padding: 0;
-        background-color: lightgreen;
-      }
+     body {  
+        display: grid;
+        grid-template-rows: auto 1fr;
+        padding: 2%; /* padding is OK, but don't set a margin */
+    }
 
-    h1 {
-        /* margin : 0; */
+    #page {
+        display: grid;
+        grid-template-rows: auto 1fr;
+
+        width: 100%;
+        height:  100%;
+        margin: 0;
+    }
+
+    #board {
+        border: solid 6px black;
+        background-color:yellow;
     }
     </style>
 
 </head>
 <body>
 
-    <div id="preamble"> 
-         <h1>Hello.  It's nice to see you.</h1>
-    </div>
-
-    <div id="square">
+    <!-- <div id="page"> -->
+        <div>
+            <h3> The yellow box below should fill the free space </h3>
+            <p> (Apart from a 2% margin.)</p>
+        </div>
         
-    </div>
+        <div id="board"></div>
+    <!-- </div> -->
 
-    <script>
-        function set_square() {
-            var hw = $( window ).height();
-            var hp = $("#preamble").height();
-            var w = $( window ).width();
-            var hw = Math.min(hw - hp, w);
-
-            //console.log("running make_squares: " + h + " " + w + " min: " + hw);
-
-            $("#square").height(hw);
-            $("#square").width(hw);
-
-        }
-
-        set_square();
-
-        $(window).resize(set_square);
-    </script>
 </body>
 
 
-</html>   
+</html>
